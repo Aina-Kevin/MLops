@@ -1,0 +1,13 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/raw/synthetic_data.xlsx
+      hash: md5
+      md5: fab8f827b1c9541882e0d29c0c7997e7
+      size: 7850
+    - path: src/train.py
+      hash: md5
+      md5: 2bb87afb3d1a4ccb6977fd9532481569
+      size: 3123

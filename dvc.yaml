@@ -1,0 +1,6 @@
+stages:
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/raw/synthetic_data.xlsx
+    - src/train.py
