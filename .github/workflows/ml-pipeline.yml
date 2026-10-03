@@ -1,0 +1,43 @@
+name: MLOps Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  ml-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupérer le projet
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Installer Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # 3. Installer les dépendances
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas
+          pip install openpyxl
+          pip install scikit-learn
+          pip install mlflow
+          pip install dvc
+
+      # 4. Vérifier les installations
+      - name: Check versions
+        run: |
+          python --version
+          dvc --version
+          mlflow --version
+
+      # 5. Vérifier le pipeline DVC
+      - name: Check DVC pipeline
+        run: |
+          dvc status
